@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    div#app { padding: 50px; margin: 30px auto; max-width: 600px; 
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; font-size: 11pt; }
+    input { padding: 6px;}
+    input:nth-child(2) {
+      margin-left: 40px;
+    }
+    div.error { background-color: #fcc; border: 1px solid red; 
+      padding: 10px; max-width: 500; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    
+    <input type="radio" name="sex_check" value="man" v-model="sex_check">남자
+    
+    <input type="radio" name="sex_check" value="woman" v-model="sex_check">여자
+
+    <div class="error" v-show="!sex_check">성별 입력은 필수입니다.</div>
+  </div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        sex_check: null
+        
+      
+      }
+    })    
+   </script>
+</body>    
+</html>
+
