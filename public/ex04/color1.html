@@ -8,14 +8,15 @@
     table { border-collapse: collapse; margin: 40px auto; }
     td { width: 50px; height: 50px; border: 1px solid gray; font-size: 20pt; 
       text-align: center; cursor: pointer; }
+    .yellow { background-color: #ffa;}
   </style>
 </head>
 <body>
   <div id="app">
     <table>
       <tr v-for="(row, index1) in matrix" v-bind:key="index1">
-        <td v-for="(value, index2) in row" v-bind:key="index2" v-on:click="onClick(index1, index2)"}>
-          {{ value.num }} {{value.color}}
+        <td v-for="(value, index2) in row" v-bind:key="index2" v-on:click="onClick(index1, index2)" v-bind:class="{ yellow: value.color }">
+          {{ value.num }}
         </td>
       </tr>
     </table>
@@ -28,16 +29,29 @@
         size: 3,
         matrix: []
       },
-      created: function() {
+      created() {
         for (let r = 0; r < this.size; ++r) {
           this.matrix[r] = [];
+          
+
           for (let c = 0; c < this.size; ++c) 
-            Vue.set(this.matrix, r+c, {num = r * this.size + c + 1, color='#fff'})
-            //this.matrix[r][c].num = r * this.size + c + 1;
-            //this.matrix[r][c].color = '#fff';
+            this.matrix[r][c] = {
+              num : r * this.size + c + 1,
+              color : false
+            }
         }
-      }
+      },
+      methods: {
+        onClick: function(r, c) {
+          if (this.matrix[r][c].color == false) {
+            this.matrix[r][c].color = true;
+            this.$forceUpdate();
+          }
+        }
+      }        
+
     })
    </script>
 </body>    
 </html>
+
