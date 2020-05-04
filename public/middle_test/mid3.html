@@ -4,10 +4,10 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
-      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; padding-right: 50px }
     span { display: inline-block; margin: 5px; padding: 8px 15px; 
       border: 1px solid black; cursor: pointer; }
-    div#app > div { margin-top: 20px; }
+    div#app > div { margin: 20px 5px; }
     input { padding : 0.5em 0.5em;}
     button { padding: 0.5em 2em; }
   </style>
@@ -38,7 +38,8 @@
                 for(let i=0; i < num; i++) arr1[i] = Math.floor(Math.random() * (9 - 0 + 1) + 0);
                 console.log(this.num);
                 console.log(arr1);
-                this.a.push(arr1);
+                this.a = arr1;
+                
                 
             }
         }

@@ -1,14 +1,14 @@
 let arr1 = [];
-let min=1;
+let min=0;
 let max=10;
 
 for(let i=0; i < 5; i++) arr1[i] = Math.floor(Math.random() * (max - min + 1) + min);
 
-
-console.log(arr1);
 console.log(sum(arr1));
-
-test_sum((arr3) => arr3.reduce((a,b) =>a+b));
+for(let i=0; i<5; i++) {
+    test_sum((arr3) => arr3.reduce((a,b) => a+b));
+}
+test_sum((arr3) => arr3.reduce((a,b) => a+b));
 
 function sum(arr) {
     let num = 0;
