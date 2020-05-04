@@ -5,7 +5,10 @@
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 300px; text-align: center;
       border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; }
-    button { padding: 0.5em 2em; margin: 20px 0px 0px 5px; }
+    button { padding: 0.5em 2em; margin: 20px 0px 10px 5px; }
+    span { display: inline-block; margin: 20px; padding: 40px; 
+      border: 1px solid black; }
+    .yellow { background-color:#ffa}
   </style>
 </head>
 <body>
@@ -13,14 +16,14 @@
     
     <button type="button" v-on:click="run = true" v-bind:disabled="run">보이기</button>
     <button type="button" v-on:click="run = false" v-bind:disabled="!run">감추기</button>  
-    <span v-
+    <span class="yellow" v-show="run"></span>
   </div>
 
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        run: false
+        run: true
       }
     })
    </script>

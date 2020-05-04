@@ -1,0 +1,48 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
+    span { display: inline-block; margin: 5px; padding: 8px 15px; 
+      border: 1px solid black; cursor: pointer; }
+    div#app > div { margin-top: 20px; }
+    input { padding : 0.5em 0.5em;}
+    button { padding: 0.5em 2em; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>
+        <input type="text" v-model="num">
+    
+        <button type="button" v-on:click="add(num)">생성</button>
+    </div>
+    <span v-for="i in a">
+        {{ i }}
+    </span>
+    
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            num: 0,
+            a: []
+        },
+        methods: {
+            add: function(num) {
+                let arr1=[];
+                for(let i=0; i < num; i++) arr1[i] = Math.floor(Math.random() * (9 - 0 + 1) + 0);
+                console.log(this.num);
+                console.log(arr1);
+                this.a.push(arr1);
+                
+            }
+        }
+    })
+   </script>
+</body>    
+</html>
