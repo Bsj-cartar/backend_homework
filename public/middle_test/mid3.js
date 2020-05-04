@@ -7,4 +7,10 @@ for(let i=0; i<3; i++) {
     }
 }
 
+
+let persons2 = persons1;
+
+persons1[0].age = 20;
+
 console.log(persons1);
+console.log(persons2);
