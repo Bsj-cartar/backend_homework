@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="todo1.css">
+  <style> ul { list-style-type: none; } </style>
+</head>
+<body>
+  <div id="app">
+    <h1>할 일</h1>
+    <ul>
+      <li v-for="(todo, key) in todoMap" v-bind:key="key">
+        <input type="checkbox" v-model="todo.checked" v-on:click="itemclick(key)"/>
+        {{ todo.body }}
+        
+      </li>
+    </ul>
+    <input type="text" v-model.trim="todo" />
+    <button type="button" v-on:click="addTodo" v-bind:disables="!todo">할일 추가</button>
+    <button type="button" v-on:click="deleteTodo">삭제</button>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        todoMap : {},
+        todo: "",
+        checked: [],
+        
+      },
+
+      methods: {
+        reload() {
+            
+            axios.get('https://skhu-bsjcartar.firebaseio.com/todo1.json')
+               .then(response => app.todoMap = response.data);
+               
+               
+        },
+        addTodo: function() {
+            
+            todo_j = {'body': this.todo};
+            this.todo = "";
+            axios.post('https://skhu-bsjcartar.firebaseio.com/todo1.json', todo_j)
+                 .then(response => this.reload());
+                 
+            
+        },
+        deleteTodo: function() {
+
+            for(let i=0; i< this.checked.length; i++) {
+                let r = this.checked[i];
+                console.log(r);
+                axios.delete('https://skhu-bsjcartar.firebaseio.com/todo1/' + r + '.json')
+                   .then(response => this.reload());
+            }
+        
+        },
+        itemclick(key) {
+            
+            this.checked.push(key);
+            console.log(this.checked);
+        }
+      }
+    })
+
+    window.onload = function() {
+        app.reload();
+        
+    }
+   </script>
+</body>
+</html>
+
+
